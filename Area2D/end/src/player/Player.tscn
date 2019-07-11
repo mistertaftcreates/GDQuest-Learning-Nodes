@@ -4,12 +4,6 @@
 [ext_resource path="res://assets/player.png" type="Texture" id=2]
 [ext_resource path="res://assets/bubbles/question.png" type="Texture" id=3]
 
-
-
-
-
-
-
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 16 )
 
@@ -20,7 +14,6 @@ extents = Vector2( 24, 56 )
 "Player",
 ]]
 script = ExtResource( 1 )
-speed = 256.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 48 )
@@ -37,7 +30,7 @@ texture = ExtResource( 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource( 2 )
 
-[node name="ContextClueSprite" type="Sprite" parent="."]
+[node name="ContextBubble" type="Sprite" parent="."]
 visible = false
 position = Vector2( 0, -92 )
 scale = Vector2( 0.125, 0.125 )
@@ -46,6 +39,5 @@ texture = ExtResource( 3 )
 [node name="StunTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="KnockbackTween" type="Tween" parent="."]
+[node name="Tween" type="Tween" parent="."]
 [connection signal="area_entered" from="HurtBox" to="." method="_on_HurtBox_area_entered"]
-[connection signal="timeout" from="StunTimer" to="." method="_on_StunTimer_timeout"]

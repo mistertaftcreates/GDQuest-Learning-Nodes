@@ -9,9 +9,8 @@ export (float) var speed_change
 
 func _on_SlowZone2_body_entered(body):
 	if body.is_in_group("Player"):
-		body.change_speed(speed_change)
+		body.speed_multiplier = speed_change
 
 func _on_SlowZone2_body_exited(body):
 	if body.is_in_group("Player"):
-		body.change_speed(1)
-
+		body.speed_multiplier = 1

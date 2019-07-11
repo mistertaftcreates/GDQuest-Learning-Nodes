@@ -1,69 +1,60 @@
 extends KinematicBody2D
-
 """
-This is a very simple top down four way 
-movement script. 
-There is a pseudo-state machine built into 
-this script for the knockback.
+Player-controled character. Moves in 4 direction and 
+gets knocked back when it takes damage.
 """
 
-onready var stun_timer = $StunTimer
-onready var knock_tween = $KnockbackTween
 
-export (float) var speed
-var speed_fraction: float = 1
-var movement: = Vector2.ZERO
-var stunned: = false
-var context_clue: = false
+onready var stun_timer: Timer = $StunTimer
+onready var tween: Tween = $Tween
+onready var context_bubble: Sprite = $ContextBubble
+
+export var speed: = 500.0
+
+var speed_multiplier: = 1.0 setget set_speed_multiplier
+
 
 func _process(delta):
 	move()
 
-func move():
-	if !stunned:
-		movement = Vector2.ZERO
-		if Input.is_action_pressed("down"):
-			movement.y += 1
-		if Input.is_action_pressed("up"):
-			movement.y -= 1
-		if Input.is_action_pressed("left"):
-			movement.x -= 1
-		if Input.is_action_pressed("right"):
-			movement.x += 1
-	movement = movement.normalized() * speed * speed_fraction
-	movement = move_and_slide(movement, Vector2.UP)
 
-func stun(stun_time = 0.3):
-	stunned = true
-	stun_timer.wait_time = stun_time
+func move():
+	var direction: = Vector2.ZERO
+	if stun_timer.is_stopped():
+		direction = Vector2(
+			Input.get_action_strength("right") - Input.get_action_strength("left"),
+			Input.get_action_strength("down") - Input.get_action_strength("up")
+		).normalized()
+
+	var velocity = direction * speed * speed_multiplier
+	move_and_slide(velocity, Vector2.UP)
+
+
+func set_speed_multiplier(multiplier):
+	speed_multiplier = max(multiplier, 0)
+
+
+func toggle_context_bubble():
+	context_bubble.visible = not context_bubble.visible
+
+
+func stun(duration: = 0.3):
+	stun_timer.wait_time = duration
 	stun_timer.start()
 
-func stun_knockback(direction):
-	knock_tween.interpolate_property(self, "position", 
-		position, position + direction, 0.3, Tween.TRANS_SINE, 
+
+func knock_back(direction: Vector2):
+	var distance: = 100.0
+	tween.interpolate_property(
+		self, "position", 
+		position, position + direction * distance, 0.3, Tween.TRANS_SINE, 
 		Tween.EASE_OUT)
-	knock_tween.start()
+	tween.start()
 
-func _on_StunTimer_timeout():
-	stunned = false
-
-func change_context_clue():
-	context_clue = !context_clue
-	if context_clue:
-		$ContextClueSprite.visible = true
-	else:
-		$ContextClueSprite.visible = false
 
 func _on_HurtBox_area_entered(area):
-	if area.is_in_group("Spikes"):
-		var knock_direction = position - area.position
-		stun()
-		stun_knockback(knock_direction)
-
-"""
-I'm just messing around with a slow or fast zone here,
-not something I want in the tut
-"""
-
-func change_speed(new_fraction):
-	speed_fraction = new_fraction
+	if not area.is_in_group("Spikes"):
+		return
+	var knock_direction = (position - area.position).normalized()
+	stun()
+	knock_back(knock_direction)
