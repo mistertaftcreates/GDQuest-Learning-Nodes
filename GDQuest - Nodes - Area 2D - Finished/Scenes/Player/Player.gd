@@ -1,7 +1,11 @@
 extends KinematicBody2D
 
 """
-This is a very simple top down four way movement script.
+This is a very simple top down four way 
+movement script. 
+There is a pseudo-state machine built into 
+this script for the knockback.
+
 """
 
 onready var stun_timer = $StunTimer

@@ -14,13 +14,13 @@
 position = Vector2( 489.803, 271.395 )
 
 [node name="Coin" parent="YSort" instance=ExtResource( 2 )]
-position = Vector2( 93.0496, 82.7107 )
+position = Vector2( 193.05, 207.711 )
 
 [node name="Sign" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( 843.908, 59.4483 )
+position = Vector2( 833.908, 189.448 )
 
 [node name="SpikeTrap" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( 127.943, 478.172 )
+position = Vector2( 193.943, 441.172 )
 
 [node name="ColorSquare" parent="YSort" instance=ExtResource( 5 )]
 position = Vector2( 856.832, 456.201 )
