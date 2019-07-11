@@ -12,6 +12,7 @@ onready var stun_timer = $StunTimer
 onready var knock_tween = $KnockbackTween
 
 export (float) var speed
+var speed_fraction: float = 1
 var movement: = Vector2.ZERO
 var stunned: = false
 var context_clue: = false
@@ -30,7 +31,7 @@ func move():
 			movement.x -= 1
 		if Input.is_action_pressed("right"):
 			movement.x += 1
-	movement = movement.normalized() * speed
+	movement = movement.normalized() * speed * speed_fraction
 	movement = move_and_slide(movement, Vector2.UP)
 
 func stun(stun_time = 0.3):
@@ -59,3 +60,11 @@ func _on_HurtBox_area_entered(area):
 		var knock_direction = position - area.position
 		stun()
 		stun_knockback(knock_direction)
+
+"""
+I'm just messing around with a slow or fast zone here,
+not something I want in the tut
+"""
+
+func change_speed(new_fraction):
+	speed_fraction = new_fraction
