@@ -1,18 +1,15 @@
 extends Area2D
-
 """
-This is a node that serves to show how 
-to get mouse over input to change a property, 
-color in this case.
+Shows how to change a property on mouse over
 """
 
-onready var sprite = $Sprite
 
-export (Color) var color_one
-export (Color) var color_two
+export var color_one: Color
+export var color_two: Color
+
 
 func _on_ColorSquare_mouse_entered():
-	sprite.modulate = color_two
+	modulate = color_two
 
 func _on_ColorSquare_mouse_exited():
-	sprite.modulate = color_one
+	modulate = color_one

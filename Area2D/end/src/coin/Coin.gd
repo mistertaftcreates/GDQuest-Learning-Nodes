@@ -1,11 +1,8 @@
 extends Area2D
-
 """
-This is a very simple scene to queue this
-object free if the player walks over it.
+Frees itself when it collides with the Player
 """
 
-func _on_Coin_area_entered(area):
-	if area.is_in_group("Player"):
-		queue_free()
 
+func _on_body_entered(body: PhysicsBody2D) -> void:
+	queue_free()

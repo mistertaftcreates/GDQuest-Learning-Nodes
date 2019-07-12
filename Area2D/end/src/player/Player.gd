@@ -7,7 +7,6 @@ gets knocked back when it takes damage.
 
 onready var stun_timer: Timer = $StunTimer
 onready var tween: Tween = $Tween
-onready var context_bubble: Sprite = $ContextBubble
 
 export var speed: = 500.0
 
@@ -34,10 +33,6 @@ func set_speed_multiplier(multiplier):
 	speed_multiplier = max(multiplier, 0)
 
 
-func toggle_context_bubble():
-	context_bubble.visible = not context_bubble.visible
-
-
 func stun(duration: = 0.3):
 	stun_timer.wait_time = duration
 	stun_timer.start()
@@ -53,8 +48,6 @@ func knock_back(direction: Vector2):
 
 
 func _on_HurtBox_area_entered(area):
-	if not area.is_in_group("Spikes"):
-		return
 	var knock_direction = (position - area.position).normalized()
 	stun()
 	knock_back(knock_direction)
