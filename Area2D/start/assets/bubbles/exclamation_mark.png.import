@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Context Clue.png-c4c685aee8dcc26445a6f0b895f0b573.stex"
+path="res://.import/exclamation_mark.png-a6e8c959f21122b1d0af3c1f56e40398.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Context Clue.png"
-dest_files=[ "res://.import/Context Clue.png-c4c685aee8dcc26445a6f0b895f0b573.stex" ]
+source_file="res://assets/bubbles/exclamation_mark.png"
+dest_files=[ "res://.import/exclamation_mark.png-a6e8c959f21122b1d0af3c1f56e40398.stex" ]
 
 [params]
 

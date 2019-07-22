@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Context Clue Question.png-c6616fa1b892342bc5edfa2d7927a510.stex"
+path="res://.import/color_block.png-77b0de54bd143d22aa535598d99bd9da.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Context Clue Question.png"
-dest_files=[ "res://.import/Context Clue Question.png-c6616fa1b892342bc5edfa2d7927a510.stex" ]
+source_file="res://assets/color_block.png"
+dest_files=[ "res://.import/color_block.png-77b0de54bd143d22aa535598d99bd9da.stex" ]
 
 [params]
 
